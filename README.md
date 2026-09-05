@@ -45,6 +45,8 @@ Economic-forecasting/
     3. **Mô hình San bằng mũ đơn (Simple Exponential Smoothing)**: SES.
   - Xuất file dữ liệu kết quả và vẽ biểu đồ so sánh các mô hình trên cùng hệ trục tọa độ.
 
+![Bài tập Chương 1 - Đánh giá độ chính xác của mô hình dự báo](data/chapter1/chapter1_exercise.png)
+
 ---
 
 ## Hướng dẫn cài đặt & Chạy bài tập
