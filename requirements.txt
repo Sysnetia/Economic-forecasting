@@ -1,0 +1,4 @@
+pandas
+pandas-datareader
+statsmodels
+matplotlib
