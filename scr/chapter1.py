@@ -5,6 +5,12 @@ import numpy as np
 import pandas_datareader.data as web
 import matplotlib.pyplot as plt
 from statsmodels.tsa.api import SimpleExpSmoothing
+from sklearn.metrics import (
+    mean_absolute_error,
+    mean_squared_error,
+    root_mean_squared_error,
+    mean_absolute_percentage_error
+)
 
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
@@ -32,7 +38,7 @@ df['yhat3'] = model.fittedvalues
 os.makedirs('data/chapter1', exist_ok=True)
 df.to_csv('data/chapter1/chapter1.csv')
 
-# 6. Tính toán 7 tiêu chí đánh giá độ chính xác của dự báo
+# 6. Tính toán 7 tiêu chí đánh giá độ chính xác của dự báo (Sử dụng scikit-learn & numpy)
 df['poil_diff'] = df['poil'] - df['poil'].shift(1)
 
 metrics_list = []
@@ -49,12 +55,13 @@ for col, name in models_info:
     e = y - yhat
     diff = valid['poil_diff']
     
+    # Tính các chỉ số bằng scikit-learn và numpy
     me = np.mean(e)
     mpe = np.mean(e / y) * 100
-    mae = np.mean(np.abs(e))
-    mape = np.mean(np.abs(e) / y) * 100
-    mse = np.mean(e**2)
-    rmse = np.sqrt(mse)
+    mae = mean_absolute_error(y, yhat)
+    mape = mean_absolute_percentage_error(y, yhat) * 100
+    mse = mean_squared_error(y, yhat)
+    rmse = root_mean_squared_error(y, yhat)
     theil_u = np.sqrt(np.sum(e**2)) / np.sqrt(np.sum(diff**2))
     
     metrics_list.append({
@@ -72,7 +79,10 @@ eval_df = pd.DataFrame(metrics_list)
 
 # Lưu bảng đánh giá vào data/chapter1/chapter1predict.csv
 predict_csv_path = 'data/chapter1/chapter1predict.csv'
-eval_df.to_csv(predict_csv_path, index=False)
+try:
+    eval_df.to_csv(predict_csv_path, index=False)
+except PermissionError:
+    print(f"Cảnh báo: Không thể ghi vào {predict_csv_path} do tệp đang được mở bởi ứng dụng khác (như Excel). Vui lòng đóng tệp và chạy lại.")
 
 # 7. Vẽ biểu đồ dự báo trên cùng hệ trục tọa độ
 plt.figure(figsize=(12, 6))
@@ -95,7 +105,7 @@ plt.close()
 
 print("--- Data snippet (first 10 rows) ---")
 print(df[['poil', 'yhat1', 'yhat2', 'yhat3']].head(10))
-print("\n--- Forecast Evaluation Metrics ---")
+print("\n--- Forecast Evaluation Metrics (Calculated using scikit-learn & numpy) ---")
 print(eval_df.to_string(index=False))
 print(f"\nChart saved to: {chart_path}")
 print(f"Evaluation metrics saved to: {predict_csv_path}")
