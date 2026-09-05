@@ -23,7 +23,7 @@ Economic-forecasting/
 
 ## Danh mục bài tập các chương
 
-### 📌 Chương 1: Dự báo chuỗi thời gian đơn giản
+### 📌 Chương 1: TỔNG QUAN VỀ DỰ BÁO VÀ CHUỖI THỜI GIAN
 - **Mã nguồn**: [`scr/chapter1.py`](file:///f:/Economic-forecasting/scr/chapter1.py)
 - **Dữ liệu & Kết quả**: [`data/chapter1/chapter1.csv`](file:///f:/Economic-forecasting/data/chapter1/chapter1.csv)
 - **Biểu đồ**: [`data/chapter1/chapter1_chart.png`](file:///f:/Economic-forecasting/data/chapter1/chapter1_chart.png)
