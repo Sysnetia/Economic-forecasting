@@ -6,8 +6,10 @@
 # 1. Tải dữ liệu trực tiếp từ FRED
 url <- "https://fred.stlouisfed.org/graph/fredgraph.csv?id=POILBREUSDQ"
 df <- read.csv(url, na.strings = ".", stringsAsFactors = FALSE)
+df <- na.omit(df)
 
 # Chuyển đổi định dạng ngày và đổi tên cột
+colnames(df)[1] <- "DATE"
 df$DATE <- as.Date(df$DATE)
 colnames(df)[colnames(df) == "POILBREUSDQ"] <- "poil"
 
@@ -41,9 +43,10 @@ for (t in 4:n) {
 df$yhat2 <- yhat2
 
 # 4. Mô hình 3: San bằng mũ đơn (Simple Exponential Smoothing - SES)
-fit_ses <- HoltWinters(poil, beta = FALSE, gamma = FALSE)
-yhat3 <- c(poil[1], fit_ses$fitted[, "hat"])
-df$yhat3 <- yhat3
+poil_ts <- ts(poil, frequency = 4)
+fit_ses <- HoltWinters(poil_ts, beta = FALSE, gamma = FALSE)
+yhat3 <- c(poil[1], fit_ses$fitted[, "xhat"])
+df$yhat3 <- as.numeric(yhat3)
 
 # 5. Lưu dataset vào thư mục data/chapter1
 if (!dir.exists("data/chapter1")) {

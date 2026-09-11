@@ -20,8 +20,12 @@ Economic-forecasting/
 │   ├── chapter1.pdf              # File PDF bài tập báo cáo hoàn chỉnh
 │   └── chapter1.zip              # File ZIP chứa các hình ảnh trích xuất từ PDF bài tập
 ├── scr/                          # Thư mục chứa mã nguồn theo từng chương
-│   ├── chapter1.py               # Bài tập Chương 1 (Python)
-│   └── chapter1.R                # Bài tập Chương 1 (R)
+│   └── chapter1/
+│       ├── chapter1.py               # Bài tập Chương 1 (Python)
+│       ├── chapter1.R                # Bài tập Chương 1 (R)
+│       ├── dubaokinhtech1_cpi.ipynb  # Notebook thực hành CPI (R)
+│       ├── dubaokinhtech1_fred.ipynb # Notebook thực hành FRED (R)
+│       └── dubaokinhtech1_worldbank.ipynb # Notebook thực hành World Bank (R & Stata)
 ├── .gitignore                    # Bỏ qua các tệp rác / môi trường ảo
 ├── README.md                     # Hướng dẫn chạy dự án
 └── requirements.txt              # Danh sách thư viện phụ thuộc Python
@@ -33,17 +37,20 @@ Economic-forecasting/
 
 ### 📌 Chương 1: TỔNG QUAN VỀ DỰ BÁO VÀ CHUỖI THỜI GIAN
 - **Báo cáo & Tài liệu**:
-  - File PDF bài tập: [`final/chapter1.pdf`](file:///f:/Economic-forecasting/final/chapter1.pdf) (File PDF bài tập báo cáo hoàn chỉnh)
-  - File ZIP hình ảnh: [`final/chapter1.zip`](file:///f:/Economic-forecasting/final/chapter1.zip) (Tập hợp ảnh trích xuất từ file PDF bài tập)
-- **Mã nguồn**:
-  - Python: [`scr/chapter1.py`](file:///f:/Economic-forecasting/scr/chapter1.py)
-  - R: [`scr/chapter1.R`](file:///f:/Economic-forecasting/scr/chapter1.R)
+  - File PDF bài tập: [`final/chapter1.pdf`](final/chapter1.pdf) (File PDF bài tập báo cáo hoàn chỉnh)
+  - File ZIP hình ảnh: [`final/chapter1.zip`](final/chapter1.zip) (Tập hợp ảnh trích xuất từ file PDF bài tập)
+- **Mã nguồn & Notebook**:
+  - Python: [`scr/chapter1/chapter1.py`](scr/chapter1/chapter1.py)
+  - R: [`scr/chapter1/chapter1.R`](scr/chapter1/chapter1.R)
+  - Notebook FRED: [`scr/chapter1/dubaokinhtech1_fred.ipynb`](scr/chapter1/dubaokinhtech1_fred.ipynb)
+  - Notebook CPI: [`scr/chapter1/dubaokinhtech1_cpi.ipynb`](scr/chapter1/dubaokinhtech1_cpi.ipynb)
+  - Notebook World Bank: [`scr/chapter1/dubaokinhtech1_worldbank.ipynb`](scr/chapter1/dubaokinhtech1_worldbank.ipynb)
 - **Dữ liệu & Kết quả**:
-  - Tập dữ liệu: [`data/chapter1/chapter1.csv`](file:///f:/Economic-forecasting/data/chapter1/chapter1.csv) (Python) | [`data/chapter1/chapter1_r.csv`](file:///f:/Economic-forecasting/data/chapter1/chapter1_r.csv) (R)
-  - Bảng 7 tiêu chí đánh giá: [`data/chapter1/chapter1predict.csv`](file:///f:/Economic-forecasting/data/chapter1/chapter1predict.csv) (Python) | [`data/chapter1/chapter1predict_r.csv`](file:///f:/Economic-forecasting/data/chapter1/chapter1predict_r.csv) (R)
+  - Tập dữ liệu: [`data/chapter1/chapter1.csv`](data/chapter1/chapter1.csv) (Python) | [`data/chapter1/chapter1_r.csv`](data/chapter1/chapter1_r.csv) (R)
+  - Bảng 7 tiêu chí đánh giá: [`data/chapter1/chapter1predict.csv`](data/chapter1/chapter1predict.csv) (Python) | [`data/chapter1/chapter1predict_r.csv`](data/chapter1/chapter1predict_r.csv) (R)
 - **Biểu đồ**:
-  - Python: [`data/chapter1/chapter1_chart.png`](file:///f:/Economic-forecasting/data/chapter1/chapter1_chart.png)
-  - R: [`data/chapter1/chapter1_chart_r.png`](file:///f:/Economic-forecasting/data/chapter1/chapter1_chart_r.png)
+  - Python: [`data/chapter1/chapter1_chart.png`](data/chapter1/chapter1_chart.png)
+  - R: [`data/chapter1/chapter1_chart_r.png`](data/chapter1/chapter1_chart_r.png)
 - **Nội dung thực hiện**:
   - Tải dữ liệu giá dầu Brent (`POILBREUSDQ`) từ FRED theo quý (1980 - nay).
   - Lọc dữ liệu từ quý **2019Q1** trở đi.
@@ -61,11 +68,11 @@ Economic-forecasting/
 
 ```bash
 pip install -r requirements.txt
-python scr/chapter1.py
+python scr/chapter1/chapter1.py
 ```
 
 ### 2. Chạy bài tập bằng R
 
 ```bash
-Rscript scr/chapter1.R
+Rscript scr/chapter1/chapter1.R
 ```
